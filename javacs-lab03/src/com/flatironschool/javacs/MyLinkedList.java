@@ -240,14 +240,43 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public boolean remove(Object obj) {
-        // TODO: fill this in
-        return false;
+        int index = this.indexOf(obj);
+        if(index==-1)
+            return false;
+        // Several cases:
+        // Object is at head.
+        // In that case, just change the head.
+        // Object is at tail.
+        // In that case, set the tail to null.
+        // Else: Set the next to the next of the next.
+        if(index==0) {
+            this.head = this.head.next;
+        } else if(index==this.size()-1) {
+            Node prev_node = this.getNode(index-1);
+            prev_node.next = new Node();
+        } else {
+            Node prev_node = this.getNode(index-1);
+            prev_node.next = prev_node.next.next;
+        }
+        this.size--;
+        return true;
     }
 
     @Override
     public E remove(int index) {
-        // TODO: fill this in
-        return null;
+        Node the_node = this.getNode(index);
+
+        if (index==0) {
+            this.head = the_node.next;
+        } else if(index==this.size()-1) {
+            Node prev_node = this.getNode(index-1);
+            prev_node.next = new Node();
+        } else {
+            Node prev_node = this.getNode(index-1);
+            prev_node.next = prev_node.next.next;
+        }
+        this.size--;
+        return the_node.cargo;
     }
 
     @Override
