@@ -91,23 +91,21 @@ public class MyLinkedList<E> implements List<E> {
         }
 
         if (index==0) {
-            head = new Node(element, head.next);
+            head = new Node(element, head);
         } else if (index==size) {
-            System.out.println("Calling add for end element.");
             this.add(element);
-            System.out.println("End call of add.");
             return;
         } else {
             Node node = head;
             for(int i=0; i<index-1; i++) {
-                System.out.println("Iterating to next node. This node is: " + node.cargo.toString());
                 node = node.next;
             }
+            // We need to save this to make sure it points to our new node
+
             Node prev_node = node;
-            node = node.next;
-            node.next = new Node(node.cargo, node.next);
-            node = new Node(element, node.next);
-            prev_node.next = node;
+            Node next_node = node.next;
+            Node new_node = new Node(element, next_node);
+            prev_node.next = new_node;
         }
         size++;
     }

@@ -77,16 +77,12 @@ public class MyLinkedListTest {
 		    mll.set(4, 0);
 		    fail();
 		} catch (IndexOutOfBoundsException e) {} // good
-
     mll.add(0, 6);
 
 		assertThat(mll.get(0), is(6));
 
-    System.out.println("Begin diagnostics print.");
 		mll.add(5, 7);
-		//System.out.println(Arrays.toString(mal.toArray()));
 		assertThat(mll.get(5), is(new Integer(7)));
-    System.out.println("End diagnostics print.");
 	}
 
 	/**
