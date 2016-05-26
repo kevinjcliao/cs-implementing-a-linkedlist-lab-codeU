@@ -83,10 +83,36 @@ public class MyLinkedList<E> implements List<E> {
         return true;
     }
 
+
     @Override
     public void add(int index, E element) {
-        // TODO: fill this in
+        if (index < 0 || index > size()) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        if (index==0) {
+            head = new Node(element, head.next);
+        } else if (index==size) {
+            System.out.println("Calling add for end element.");
+            this.add(element);
+            System.out.println("End call of add.");
+            return;
+        } else {
+            Node node = head;
+            for(int i=0; i<index-1; i++) {
+                System.out.println("Iterating to next node. This node is: " + node.cargo.toString());
+                node = node.next;
+            }
+            Node prev_node = node;
+            node = node.next;
+            node.next = new Node(node.cargo, node.next);
+            node = new Node(element, node.next);
+            prev_node.next = node;
+        }
+        size++;
     }
+
+
 
     @Override
     public boolean addAll(Collection<? extends E> collection) {

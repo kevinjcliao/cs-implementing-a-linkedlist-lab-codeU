@@ -65,10 +65,9 @@ public class MyLinkedListTest {
 	@Test
 	public void testAddIntT() {
 		mll.add(1, 5);
-		//System.out.println(Arrays.toString(mal.toArray()));
 		assertThat(mll.get(1), is(new Integer(5)));
 		assertThat(mll.size(), is(4));
-		
+
 		try {
 		    mll.set(-1, 0);
 		    fail();
@@ -78,14 +77,16 @@ public class MyLinkedListTest {
 		    mll.set(4, 0);
 		    fail();
 		} catch (IndexOutOfBoundsException e) {} // good
-		
-		mll.add(0, 6);
-		//System.out.println(Arrays.toString(mal.toArray()));
+
+    mll.add(0, 6);
+
 		assertThat(mll.get(0), is(6));
 
+    System.out.println("Begin diagnostics print.");
 		mll.add(5, 7);
 		//System.out.println(Arrays.toString(mal.toArray()));
 		assertThat(mll.get(5), is(new Integer(7)));
+    System.out.println("End diagnostics print.");
 	}
 
 	/**
